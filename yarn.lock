@@ -3599,8 +3599,8 @@ react-native-swift@^0.23.0:
     xcode "https://github.com/apache/cordova-node-xcode"
 
 react-native-turbolinks@^1.1.3:
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/react-native-turbolinks/-/react-native-turbolinks-1.1.3.tgz#00a645cd3bcd8a1186291c49f70e8c17c148a45c"
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/react-native-turbolinks/-/react-native-turbolinks-1.1.4.tgz#e272a54c0711d5300b5bdd1484b90fefa6e51057"
   dependencies:
     react "16.2.0"
 
@@ -4658,9 +4658,9 @@ xcode@^0.9.1:
     simple-plist "^0.2.1"
     uuid "3.0.1"
 
-"xcode@https://github.com/apache/cordova-node-xcode":
+"xcode@git+https://github.com/apache/cordova-node-xcode.git":
   version "1.0.1-dev"
-  resolved "https://github.com/apache/cordova-node-xcode#ba195a85438c810eac41905adc4930428ba90a24"
+  resolved "git+https://github.com/apache/cordova-node-xcode.git#ba195a85438c810eac41905adc4930428ba90a24"
   dependencies:
     pegjs "^0.10.0"
     simple-plist "^0.2.1"
