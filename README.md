@@ -10,4 +10,4 @@ react-native-turbolinks showcase
 
 ### App Links
 
-[Create a new post](http://rnt-showcase-rails.herokuapp.com/posts/new)
+[Create a new post](https://rnt-showcase-rails.herokuapp.com/posts/new)

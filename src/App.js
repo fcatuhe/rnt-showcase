@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Linking } from 'react-native';
+import { Linking, Platform } from 'react-native';
 import Turbolinks from 'react-native-turbolinks';
 
 import env from './env';
@@ -13,29 +13,19 @@ export default class App extends Component {
     );
     Turbolinks.addEventListener('turbolinksError', this.handleError);
     Turbolinks.addEventListener('turbolinksMessage', this.showMessage);
-    Turbolinks.setTabBar({
-      routes: [
-        {
-          tabTitle: 'Home',
-          title: 'RNT Showcase',
-          url: env.BASE_URL,
-          actions: [{ id: 404, title: '404 error' }]
-        },
-        {
-          tabTitle: 'Posts',
-          title: 'View all posts',
-          url: `${env.BASE_URL}/posts`,
-          actions: [{ id: 11, title: 'New post' }]
+
+    if (Platform.OS === 'android') {
+      Linking.getInitialURL().then(url => {
+        if (url) {
+          Turbolinks.visit({ url });
+        } else {
+          Turbolinks.visit({ url: env.BASE_URL });
         }
-      ]
-    });
-    Linking.getInitialURL().then(url => {
-      if (url) {
-        this.showMessage(url);
-        // Turbolinks.visit({ url });
-      }
-    });
-    // .catch(err => console.error('An error occurred', err));
+      });
+    } else {
+      Turbolinks.visit({ url: env.BASE_URL });
+      Linking.addEventListener('url', this.handleLinking);
+    }
   }
 
   componentWillUnmount() {
@@ -46,10 +36,15 @@ export default class App extends Component {
     );
     Turbolinks.removeEventListener('turbolinksError', this.handleError);
     Turbolinks.removeEventListener('turbolinksMessage', this.showMessage);
+    Linking.removeEventListener('url', this.handleLinking);
   }
 
   handleVisit = data => {
     Turbolinks.visit({ url: data.url, action: data.action });
+  };
+
+  handleLinking = event => {
+    Turbolinks.visit({ url: event.url });
   };
 
   handleActionPress = actionId => {
