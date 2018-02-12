@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Linking } from 'react-native';
 import Turbolinks from 'react-native-turbolinks';
 
 import env from './env';
@@ -28,6 +29,13 @@ export default class App extends Component {
         }
       ]
     });
+    Linking.getInitialURL().then(url => {
+      if (url) {
+        this.showMessage(url);
+        // Turbolinks.visit({ url });
+      }
+    });
+    // .catch(err => console.error('An error occurred', err));
   }
 
   componentWillUnmount() {
